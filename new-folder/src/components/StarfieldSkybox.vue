@@ -20,9 +20,9 @@ onMounted(() => {
   // 场景
   scene = new THREE.Scene()
 
-  // 相机
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.set(0, 0, 5)
+  // 相机 - 减小FOV以缩小视角，让背景图片更完整地显示
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
+  camera.position.set(0, 0, 2) // 调整相机位置，使背景更加突出
 
   // 渲染器（直接全屏）
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
@@ -41,10 +41,7 @@ onMounted(() => {
   loader.load('/texturees/milkyway.png', texture => {
     texture.mapping = THREE.EquirectangularReflectionMapping
     
-    // 创建一个暗色滤镜使背景更暗
-    const darkFilter = new THREE.Color(0.3, 0.3, 0.4) // 暗蓝色滤镜
     scene.background = texture
-    scene.fog = new THREE.FogExp2(0x000020, 0.001) // 添加雾效果，使远处更暗
     
     animate()
   })
@@ -72,6 +69,5 @@ onBeforeUnmount(() => {
   width: 100vw;
   height: 100vh;
   z-index: 0; /* 确保在底层 */
-  background-color: #000020; /* 微蓝色背景 */
 }
 </style>

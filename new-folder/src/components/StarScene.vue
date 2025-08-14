@@ -9,7 +9,7 @@ import * as THREE from 'three'
 const container = ref(null)
 
 let scene, camera, renderer, stars, clock
-let nebula
+// nebula变量已移除
 
 let raycaster = new THREE.Raycaster()
 let mouse = new THREE.Vector2()
@@ -87,19 +87,8 @@ onMounted(() => {
     scene.fog = new THREE.FogExp2(0x000020, 0.001) // 添加雾效果，使远处更暗
   })
 
-  // 加载星云纹理，使其更大
-  loader.load('/texturees/nebula.png', texture => {
-    const material = new THREE.SpriteMaterial({
-      map: texture,
-      transparent: true,
-      opacity: 0.4, // 降低不透明度，让星星更明显
-      color: new THREE.Color(0.7, 0.7, 1.0) // 添加蓝色调
-    })
-    nebula = new THREE.Sprite(material)
-    nebula.scale.set(25, 25, 1) // 更大的星云
-    nebula.position.set(0, 0, -10) // 放到更远的位置
-    scene.add(nebula)
-  })
+  // 星云纹理已移除
+  // 不再加载星云纹理，以去除中间的蓝色方框
   
   // 创建圆形粒子纹理
   createCircleTexture()
@@ -291,10 +280,10 @@ function animate() {
 
   // 流星动画已移除
 
-  if (nebula) {
-    // 使用rotation.z代替直接设置rotation
-    nebula.rotation.z += 0.0005
-  }
+  // 星云动画已移除
+  // if (nebula) {
+  //   nebula.rotation.z += 0.0005
+  // }
 
   // 粒子动画，只处理樱花粒子
   for (let i = particles.length - 1; i >= 0; i--) {

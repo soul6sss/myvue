@@ -1,5 +1,6 @@
 <template>
   <div class="scene">
+    <div style="position: absolute; top: 20px; left: 20px; color: white; font-size: 24px; z-index: 1000;">hello world</div>
     <StarfieldSkybox />
    <StarScene />
   </div>
